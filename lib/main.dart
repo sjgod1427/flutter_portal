@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_portal/bubbleBounce/bubbleBounce.dart';
-import 'package:flutter_portal/bubbleRush/bubblerush.dart';
+import 'package:firebase_core/firebase_core.dart'; // Import Firebase Core
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
+import 'package:flutter_portal/home.dart';
+import 'package:flutter_portal/login.dart';
+// Import your HomeScreen
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
+  await Firebase.initializeApp(); // Initialize Firebase
   runApp(MyApp());
 }
 
@@ -16,95 +20,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: AuthWrapper(), // Use AuthWrapper to handle login state
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Game App'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to Game 1 (index.html)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        GameScreen(gameFile: 'assets/game/index.html'),
-                  ),
-                );
-              },
-              child: Text('Play Game 1'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to Game 2 (index1.html)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        GameScreen(gameFile: 'assets/game/index1.html'),
-                  ),
-                );
-              },
-              child: Text('Play Game 2'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to Game 1 (index.html)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BubbleRush()),
-                );
-              },
-              child: Text('Play Game 3'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to Game 1 (index.html)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Bubblebounce()),
-                );
-              },
-              child: Text('Play Game 4'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+    // Check if the user is logged in
+    User? user = FirebaseAuth.instance.currentUser;
 
-class GameScreen extends StatelessWidget {
-  final String gameFile;
-
-  GameScreen({required this.gameFile});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Game'),
-      ),
-      body: InAppWebView(
-        initialFile: gameFile, // Load the selected game file
-        initialOptions: InAppWebViewGroupOptions(
-          crossPlatform: InAppWebViewOptions(
-            javaScriptEnabled: true,
-          ),
-        ),
-      ),
-    );
+    // If the user is logged in, navigate to the HomeScreen
+    if (user != null) {
+      return HomeScreen(); // Replace with your home screen widget
+    } else {
+      // If the user is not logged in, navigate to the LoginScreen
+      return LoginScreen();
+    }
   }
 }

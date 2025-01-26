@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "412249606931",
+    "project_id": "test-65mybt",
+    "storage_bucket": "test-65mybt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412249606931:android:bf249aa57ec9fb343528e6",
+        "android_client_info": {
+          "package_name": "com.example.flutter_portal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSU0Jm0TrTG3B349IAdQPHaiBKvlKnoyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412249606931:android:bb9e4c16e8680dec3528e6",
+        "android_client_info": {
+          "package_name": "com.example.medsturbo_personal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSU0Jm0TrTG3B349IAdQPHaiBKvlKnoyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412249606931:android:9ea1fff2bff9a3113528e6",
+        "android_client_info": {
+          "package_name": "com.mycompany.chatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSU0Jm0TrTG3B349IAdQPHaiBKvlKnoyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
